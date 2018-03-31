@@ -11,25 +11,22 @@ process.on('unhandledRejection', (reason, p) => {
     console.log('🚧 UnhandledPromiseRejectionWarning: Unhandled promise rejection', p, ' reason: ', reason);
 });
 
-app.listen(app.get('port'), () => {
-    console.log('MedicalBot Running on port:', app.get('port'));
-});
 
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
-mongoose.connect(process.env.MONGO_URI, {
-    reconnectTries: Number.MAX_VALUE,
-    reconnectInterval: 1000,
-    autoReconnect: true
-}, (error, db) => {
-    console.log('Connected to Database!');
-    if (error) {
-        console.log('Mongo error', error);
-    }
-});
+// mongoose.connect(process.env.MONGO_URI, {
+//     reconnectTries: Number.MAX_VALUE,
+//     reconnectInterval: 1000,
+//     autoReconnect: true
+// }, (error, db) => {
+//     console.log('Connected to Database!');
+//     if (error) {
+//         console.log('Mongo error', error);
+//     }
+// });
 
 mongoose.Promise = global.Promise;
 
